@@ -25,6 +25,7 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v3
       - name: works
+        id: io
         uses: ./.github/actions/
         with:
           caching: 'false'
@@ -46,3 +47,5 @@ jobs:
           echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
           echo "${{ env.PORT }}"
+      - name: print output
+        run: echo '${{steps.io.Output.coco}}'
