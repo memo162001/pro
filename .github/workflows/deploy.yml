@@ -9,13 +9,10 @@ env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
-    strategy:
-      matrix:
-        run: [ubuntu-latest,windows10,windows11]
 
 
     environment: testing
-    runs-on: ${{matrix.run}}
+    runs-on: ubuntu-latest
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb+srv
       MONGODB_CLUSTER_ADDRESS: ${{secrets.MONGODB_CLUSTER_ADDRESS}}
@@ -28,7 +25,7 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v3
       - name: works
-        uses: ./.github/actions/action1.yml
+        uses: ./.github/actions
       - name: Run server
         run: npm start & npx wait-on http://127.0.0.1:${{env.PORT}} # requires MongoDB Atlas to accept requests from anywhere!
       - name: Run tests
