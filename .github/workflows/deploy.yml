@@ -19,6 +19,9 @@ jobs:
       MONGODB_USERNAME: ${{secrets.MONGODB_USERNAME}}
       MONGODB_PASSWORD: ${{secrets.MONGODB_PASSWORD}}
       PORT: 8080
+    outputs:
+      name: momo
+      value: ${{steps.io.outputs.coco}}
     container:
       image: node:16
     steps:
@@ -48,4 +51,4 @@ jobs:
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
           echo "${{ env.PORT }}"
       - name: print output
-        run: echo '${{steps.io.Output.coco}}'
+        run: echo '${{needs.test.outputs.momo}}'
