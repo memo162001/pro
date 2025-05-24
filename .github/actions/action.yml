@@ -24,7 +24,7 @@ runs:
       shell: bash
     - name: out
       id: so
-      run: echo "op='${{inuts.caching}}'">> $GITHUB_OUTPUT
+      run: echo "op='${{inputs.caching}}'">> $GITHUB_OUTPUT
       shell: bash
 
    
